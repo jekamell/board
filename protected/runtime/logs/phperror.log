@@ -1,0 +1,1 @@
+2014/11/14 21:48:27 [error] 9364#0: *2 open() "/www/board/favicon.ico" failed (2: No such file or directory), client: 127.0.0.1, server: board.local, request: "GET /favicon.ico HTTP/1.1", host: "board.local"
