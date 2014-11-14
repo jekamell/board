@@ -20,4 +20,19 @@ class Controller extends CController
 	 * for more details on how to specify this property.
 	 */
 	public $breadcrumbs=array();
+
+    protected function getParam($name, $defaultValue = null)
+    {
+        return Yii::app()->getRequest()->getParam($name, $defaultValue);
+    }
+
+    protected function getPost($name, $defaultValue = null)
+    {
+        return Yii::app()->getRequest()->getPost($name, $defaultValue);
+    }
+
+    protected function setFlash($key, $value, $defaultValue = null)
+    {
+        Yii::app()->getUser()->setFlash($key, $value, $defaultValue);
+    }
 }
