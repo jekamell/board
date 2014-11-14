@@ -25,6 +25,19 @@
                     <li><a href="#about">About</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <? if (Yii::app()->user->getIsGuest()) { ?>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Auth <span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><?= CHtml::link('Sign up', '#'); ?></li>
+                                <li><?= CHtml::link('Register now', '#'); ?></li>
+                            </ul>
+                        </li>
+                    <? } else { ?>
+                        <li><?= CHtml::link(Yii::app()->user->email, '#'); ?></li>
+                    <? } ?>
+                </ul>
             </div><!--/.nav-collapse -->
         </div>
     </nav>
