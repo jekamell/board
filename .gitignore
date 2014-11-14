@@ -1,2 +1,3 @@
 .idea/
 protected/runtime/
+protected/config/local.php

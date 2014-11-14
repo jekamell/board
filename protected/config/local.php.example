@@ -1,0 +1,17 @@
+<?php
+return CMap::mergeArray(
+    require(dirname(__FILE__) . '/main.php'),
+    array(
+        'components' => array(
+            'db' => array(
+                'connectionString' => 'mysql:host=localhost;dbname=board;port=3306', // specify db name here
+                'emulatePrepare' => true,
+                'username' => 'board', // specify db user name here
+                'password' => 'board', // specify db password here
+                'charset' => 'utf8',
+                'enableParamLogging' => true,
+                'enableProfiling' => true,
+            ),
+        ),
+    )
+);
