@@ -105,4 +105,18 @@ class User extends ActiveRecord
 			'criteria'=>$criteria,
 		]);
 	}
+
+    protected function beforeSave()
+    {
+        if ($this->getScenario() == self::SCENARIO_INSERT) {
+            $this->password = $this->crypt($this->password);
+        }
+
+        return parent::beforeSave();
+    }
+
+    protected function crypt($password)
+    {
+        return crypt($password, $this->salt);
+    }
 }
