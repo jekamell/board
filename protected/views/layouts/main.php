@@ -26,17 +26,25 @@
                     <li><a href="#contact">Contact</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <? if (Yii::app()->user->getIsGuest()) { ?>
-                        <li class="dropdown">
+                    <li class="dropdown">
+                        <? if (Yii::app()->user->getIsGuest()) { ?>
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Auth <span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
                                 <li><?= CHtml::link('Sign up', $this->createUrl('/user/login')); ?></li>
                                 <li><?= CHtml::link('Register now', $this->createUrl('/user/register')); ?></li>
                             </ul>
-                        </li>
-                    <? } else { ?>
-                        <li><?= CHtml::link(Yii::app()->user->email, '#'); ?></li>
-                    <? } ?>
+                        <? } else { ?>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                <?= sprintf('%s (%s)', Yii::app()->getUser()->name, Yii::app()->getUser()->email); ?>
+                                <span class="caret"></span>
+                            </a>
+
+                            <ul class="dropdown-menu" role="menu">
+                                <li><?= CHtml::link('Edit profile', $this->createUrl('/user/profile')); ?></li>
+                                <li><?= CHtml::link('Logout', $this->createUrl('/user/logout')); ?></li>
+                            </ul>
+                        <?  } ?>
+                    </li>
                 </ul>
             </div><!--/.nav-collapse -->
         </div>

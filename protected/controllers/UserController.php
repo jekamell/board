@@ -31,4 +31,10 @@ class UserController extends Controller
 
         $this->render('login', ['model' => $model]);
     }
+
+    public function actionLogout()
+    {
+        Yii::app()->getUser()->logout();
+        $this->redirect($this->createUrl('/'));
+    }
 }
