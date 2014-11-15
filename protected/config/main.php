@@ -54,5 +54,9 @@ return array(
     'params' => array(
         // this is used in contact page
         'adminEmail' => 'webmaster@example.com',
+        'image' => array(
+            'maxSize' => 5, // Mb
+            'savePath' => '/images/product/',
+        )
     ),
 );

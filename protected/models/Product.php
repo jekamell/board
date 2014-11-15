@@ -15,7 +15,7 @@
  * The followings are the available model relations:
  * @property User $user
  */
-class Product extends CActiveRecord
+class Product extends ActiveRecord
 {
     public $image;
 
@@ -45,7 +45,10 @@ class Product extends CActiveRecord
 	public function rules()
 	{
 		return [
-            ['title, price , image', 'required'],
+            ['date_add', 'default', 'value' => new CDbExpression('NOW()'), 'setOnEmpty' => false, 'on' => self::SCENARIO_INSERT],
+            ['date_update', 'default', 'value' => new CDbExpression('NOW()'), 'setOnEmpty' => false, 'on' => self::SCENARIO_UPDATE],
+            ['user_id', 'default', 'value' => Yii::app()->getUser()->getId(), 'setOnEmpty' => false, 'on' => self::SCENARIO_INSERT], // can get Exception here when app run in console mode, but we have not this case now
+            ['title, price', 'required'],
 			['is_deleted', 'numerical', 'integerOnly' => true],
 			['title', 'length', 'max' => 255],
 			['price', 'length', 'max' => 12],
