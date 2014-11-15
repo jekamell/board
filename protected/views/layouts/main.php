@@ -30,7 +30,7 @@
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Auth <span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
-                                <li><?= CHtml::link('Sign up', '#'); ?></li>
+                                <li><?= CHtml::link('Sign up', $this->createUrl('/user/login')); ?></li>
                                 <li><?= CHtml::link('Register now', $this->createUrl('/user/register')); ?></li>
                             </ul>
                         </li>

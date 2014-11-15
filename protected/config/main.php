@@ -26,8 +26,9 @@ return array(
     // application components
     'components' => array(
         'user' => array(
-            // enable cookie-based authentication
-            'allowAutoLogin' => true,
+            'class' => 'WebUser',
+            'loginUrl' => array('/user/login'),
+            'logoutUrl' => array('/user/logout'),
         ),
         // uncomment the following to enable URLs in path-format
         /*
