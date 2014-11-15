@@ -20,7 +20,7 @@
     <div class="form-group">
         <?= $form->labelEx($model, 'password', ['class' => 'col-sm-2 control-label']); ?>
         <div class="col-sm-10">
-            <?= $form->textField($model, 'password', ['class' => 'form-control', 'placeholder' => 'Password']); ?>
+            <?= $form->passwordField($model, 'password', ['class' => 'form-control', 'placeholder' => 'Password']); ?>
         </div>
     </div>
 
