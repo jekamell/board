@@ -9,6 +9,7 @@ class UserIdentity extends CUserIdentity
 {
     public $email;
     public $role;
+    public $name;
 
     private $id;
 
@@ -31,6 +32,7 @@ class UserIdentity extends CUserIdentity
             $this->errorCode = self::ERROR_PASSWORD_INVALID;
         } else {
             $this->id = $user->id;
+            $this->name = $user->name;
             $this->role = User::ROLE_USER;
             $this->errorCode = self::ERROR_NONE;
         }

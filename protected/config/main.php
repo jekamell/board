@@ -28,7 +28,6 @@ return array(
         'user' => array(
             'class' => 'WebUser',
             'loginUrl' => array('/user/login'),
-            'logoutUrl' => array('/user/logout'),
         ),
         // uncomment the following to enable URLs in path-format
         /*

@@ -5,18 +5,39 @@ class WebUser extends CWebUser
     const FLASH_OK = 'ok';
     const FLASH_ERR = 'err';
 
-    public $email;
-    public $logoutUrl;
-
+    /**
+     * @param $role
+     */
     public function setRole($role)
     {
         $this->setState('role', $role);
     }
 
+    /**
+     * @return integer
+     */
     public function getRole()
     {
         return $this->getState('role');
     }
+
+    /**
+     * @return string
+     */
+    public function getEmail()
+    {
+        return $this->getState('email');
+    }
+
+    /**
+     * @param mixed $email
+     */
+    public function setEmail($email)
+    {
+        $this->setState('email', $email);
+    }
+
+
 
     public function getIsGuest()
     {
