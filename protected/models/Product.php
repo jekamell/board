@@ -17,6 +17,8 @@
  */
 class Product extends CActiveRecord
 {
+    public $image;
+
 	/**
 	 * @return string the associated database table name
 	 */
@@ -28,6 +30,7 @@ class Product extends CActiveRecord
     /**
      * Returns the static model of the specified AR class.
      * Please note that you should have this exact method in all your CActiveRecord descendants!
+     *
      * @param string $className active record class name.
      * @return Product the static model class
      */
@@ -41,13 +44,12 @@ class Product extends CActiveRecord
 	 */
 	public function rules()
 	{
-		// NOTE: you should only define rules for those attributes that
-		// will receive user inputs.
 		return [
-            ['title, price', 'required'],
+            ['title, price , image', 'required'],
 			['is_deleted', 'numerical', 'integerOnly' => true],
 			['title', 'length', 'max' => 255],
 			['price', 'length', 'max' => 12],
+            ['image', 'file', 'types' => 'jpeg, png', 'maxSize' => Yii::app()->params['image']['maxSize'] * 1024 * 1024],
 		];
 	}
 
