@@ -37,4 +37,20 @@ class UserController extends Controller
         Yii::app()->getUser()->logout();
         $this->redirect($this->createUrl('/'));
     }
+
+    public function actionProfile()
+    {
+        $user = User::model()->findByPk(Yii::app()->getUser()->getId());
+
+        if ($attributes = $this->getPost('User')) {
+            $user->attributes = $attributes;
+            if ($user->save()) {
+                Yii::app()->getUser()->setName($user->name);
+                Yii::app()->getUser()->setEmail($user->email);
+                $this->setFlash(WebUser::FLASH_OK, 'aa');
+            }
+        }
+
+        $this->render('profile', ['model' => $user]);
+    }
 }

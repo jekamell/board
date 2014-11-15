@@ -1,4 +1,4 @@
 <?php
 /* @var $this SiteController */
 
-CVarDumper::dump(Yii::app()->user->getIsGuest(), 3, 1);
+CVarDumper::dump(Yii::app()->user->name, 3, 1);

@@ -47,14 +47,15 @@ class User extends ActiveRecord
     public function rules()
     {
         return [
-            ['date_add', 'default', 'value' => new CDbExpression('NOW()'), 'setOnEmpty' => false, 'on' => 'insert'],
-            ['date_update', 'default', 'value' => new CDbExpression('NOW()'), 'setOnEmpty' => false, 'on' => 'update'],
-            ['is_confirmed', 'default', 'value' => 0, 'setOnEmpty' => false, 'on' => 'insert'],
-            ['name, email, password, password_repeat', 'required'],
+            ['date_add', 'default', 'value' => new CDbExpression('NOW()'), 'setOnEmpty' => false, 'on' => self::SCENARIO_INSERT],
+            ['date_update', 'default', 'value' => new CDbExpression('NOW()'), 'setOnEmpty' => false, 'on' => self::SCENARIO_UPDATE],
+            ['is_confirmed', 'default', 'value' => 0, 'setOnEmpty' => false, 'on' => self::SCENARIO_INSERT],
+            ['name, email, password, password_repeat', 'required', 'on' => self::SCENARIO_INSERT],
             ['email', 'email'],
             ['email', 'unique'],
             ['password', 'compare'],
             ['name, email, password', 'length', 'max' => 255],
+            ['password_repeat', 'safe'],
         ];
     }
 
@@ -125,7 +126,7 @@ class User extends ActiveRecord
 
     protected function beforeSave()
     {
-        if ($this->getScenario() == self::SCENARIO_INSERT) {
+        if ($this->password_repeat) { //user set up password (registration or profile edit)
             $this->password = $this->crypt($this->password);
         }
 
