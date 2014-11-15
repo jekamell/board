@@ -12,9 +12,13 @@
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <? if (!Yii::app()->getUser()->getIsGuest()) { ?>
-                    <li><?= CHtml::link('My products', $this->createUrl('product/my')) ?></li>
+                    <li class="<?= $this->id == 'product' && $this->action->id == 'my' ? 'active' : '' ?>">
+                        <?= CHtml::link('My products', $this->createUrl('product/my')); ?>
+                    </li>
                 <? } ?>
-                <li><?= CHtml::link('Add', $this->createUrl('product/add')) ?></li>
+                <li class="<?= $this->id == 'product' && $this->action->id == 'add' ? 'active' : '' ?>">
+                    <?= CHtml::link('Add', $this->createUrl('product/add')) ?>
+                </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
