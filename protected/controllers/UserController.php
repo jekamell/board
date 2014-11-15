@@ -2,6 +2,25 @@
 
 class UserController extends Controller
 {
+    public function accessRules()
+    {
+        return array_merge(
+            [
+                [
+                    'allow',
+                    'actions' => ['login', 'register'],
+                    'users' => ['?'],
+                ],
+                [
+                    'allow',
+                    'actions' => ['profile', 'logout'],
+                    'users' => ['@'],
+                ],
+            ],
+            parent::accessRules()
+        );
+    }
+
     public function actionRegister()
     {
         $model = new User();
@@ -35,7 +54,7 @@ class UserController extends Controller
     public function actionLogout()
     {
         Yii::app()->getUser()->logout();
-        $this->redirect($this->createUrl('/'));
+        $this->redirect(Yii::app()->homeUrl);
     }
 
     public function actionProfile()
