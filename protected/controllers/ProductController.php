@@ -39,9 +39,6 @@ class ProductController extends Controller
             $model->attributes = $attributes;
             $model->image = CUploadedFile::getInstance($model, 'image');
             if ($model->save()) {
-                $path = Yii::getPathOfAlias('webroot') . Yii::app()->params['image']['savePath']
-                    . $model->id . '.' . $model->image->extensionName;
-                $model->image->saveAs($path);
                 $this->setFlash(WebUser::FLASH_OK, 'aa');
 
                 $this->redirect(Yii::app()->getBaseUrl(true));

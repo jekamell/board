@@ -6,6 +6,7 @@ return array(
     'preload' => array('log'),
     'import' => array(
         'application.models.*',
+        'application.models.behaviors.*',
         'application.components.*',
     ),
     'modules' => array(

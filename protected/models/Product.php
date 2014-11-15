@@ -39,7 +39,18 @@ class Product extends ActiveRecord
         return parent::model($className);
     }
 
-	/**
+    public function behaviors()
+    {
+        return [
+            'fileBehavior' => [
+                'class' => 'FileBehavior',
+                'basePath' => Yii::getPathOfAlias('webroot') . Yii::app()->params['image']['savePath']
+            ]
+        ];
+    }
+
+
+    /**
 	 * @return array validation rules for model attributes.
 	 */
 	public function rules()
@@ -81,4 +92,15 @@ class Product extends ActiveRecord
 			'date_update' => 'Date Update',
         ];
 	}
+
+    protected function afterSave()
+    {
+        if ($this->image) {
+            $this->saveImage();
+        }
+
+        return parent::afterSave();
+    }
+
+
 }
