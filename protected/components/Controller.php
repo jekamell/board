@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Controller is the customized base controller class.
  * All controller classes for this application should extend from this base class.
@@ -20,7 +21,7 @@ class Controller extends CController
     }
 
 
-    public $layout='//layouts/column1';
+    public $layout = '//layouts/column1';
 
     protected function getParam($name, $defaultValue = null)
     {
@@ -35,5 +36,14 @@ class Controller extends CController
     protected function setFlash($key, $value, $defaultValue = null)
     {
         Yii::app()->getUser()->setFlash($key, $value, $defaultValue);
+    }
+
+    protected function beforeAction($action)
+    {
+        if (!Yii::app()->getRequest()->isScriptRegistered('jquery')) {
+            Yii::app()->getClientScript()->registerCoreScript('jquery');
+        }
+
+        return parent::beforeAction($action);
     }
 }

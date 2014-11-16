@@ -13,7 +13,7 @@ class ProductController extends Controller
                 ],
                 [
                     'allow',
-                    'actions' => ['my', 'add'],
+                    'actions' => ['my', 'add', 'delete'],
                     'users' => ['@'],
                 ],
             ],
@@ -25,12 +25,26 @@ class ProductController extends Controller
     {
         $items = Product::model()->noDeleted()->orderedDateDesc()->with('user')->findAll();
 
-        $this->render('index', ['items' => $items]);
+        $this->render('list', ['items' => $items]);
     }
 
     public function actionMy()
     {
-        $this->render('index');
+        $model = new Product();
+
+        $this->render('list-my', ['model' => $model]);
+    }
+
+    public function actionDelete($id)
+    {
+        if ($model = Product::model()->noDeleted()->findByPk($id)) {
+            $model->is_deleted = 1;
+            $model->save(false);
+            if (!$this->getParam('ajax')) {
+                $this->redirect(array('my'));
+            }
+
+        }
     }
 
     public function actionAdd()

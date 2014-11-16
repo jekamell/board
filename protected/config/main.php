@@ -31,6 +31,13 @@ return array(
                 '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
             ),
         ),
+        'clientScript' => array(
+            'scriptMap' => array(
+                'jquery.js' => '/js/jq/jquery.js',
+                'jquery.min.js' => '/js/jq/jquery.min.js',
+            ),
+            'coreScriptPosition' => CClientScript::POS_HEAD,
+        ),
         'db' => array(
             'connectionString' => 'mysql:host=localhost;dbname=testdrive',
             'emulatePrepare' => true,
