@@ -61,6 +61,10 @@ return array(
         'image' => array(
             'maxSize' => 5, // Mb
             'savePath' => '/images/product/',
+            'thumb' => array(
+                'width' => 200,
+                'height' => 200,
+            )
         )
     ),
 );

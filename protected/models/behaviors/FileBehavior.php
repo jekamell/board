@@ -1,24 +1,43 @@
 <?php
 
+/**
+ * Class FileBehavior
+ *
+ * Relations: 'ext.CImageHandler.CImageHandler.php'
+ */
 class FileBehavior extends CActiveRecordBehavior
 {
     const EXTENSION_JPG = 'jpeg';
     const EXTENSING_PNG = 'png';
+    const PREFIX_THUMB = '_thumb';
+
     public $basePath;
 
     public function saveImage()
     {
-        $this->owner->image->saveAs($this->getAbsolutePath());
+        return $this->owner->image->saveAs($this->getAbsolutePath());
     }
 
-    protected function getAbsolutePath()
+    public function makeThumb()
     {
-        return $this->basePath .  $this->getSubDir() . '/' . $this->owner->id . '.' . $this->getExtension();
+        if (!Yii::app()->hasComponent('ih')) {
+             throw new CException('No image handler extension found. Please install it and try again');
+        }
+
+        return Yii::app()->ih
+            ->load($this->getAbsolutePath())
+            ->thumb(Yii::app()->params['image']['thumb']['width'], Yii::app()->params['image']['thumb']['height'])
+            ->save($this->getAbsolutePath(self::PREFIX_THUMB));
     }
 
-    public function getHttpPath()
+    public function getHttpPath($filePrefix = '')
     {
-        return str_replace(Yii::getPathOfAlias('webroot'), '', $this->getAbsolutePath());
+        return str_replace(Yii::getPathOfAlias('webroot'), '', $this->getAbsolutePath($filePrefix));
+    }
+
+    protected function getAbsolutePath($filePrefix = '')
+    {
+        return $this->basePath .  $this->getSubDir() . '/' . $this->owner->id . $filePrefix . '.' . $this->getExtension();
     }
 
     /**
@@ -47,7 +66,6 @@ class FileBehavior extends CActiveRecordBehavior
         if ($this->owner->image) {
             return $this->owner->image->extensionName;
         }
-//        exit($this->basePath . $this->getSubDir() . $this->owner->id . '.' . self::EXTENSION_JPG);
         // get file case
         elseif (is_file($this->basePath . $this->getSubDir() . '/' . $this->owner->id . '.' . self::EXTENSION_JPG)) {
             return self::EXTENSION_JPG;

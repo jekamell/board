@@ -14,6 +14,11 @@
  *
  * The followings are the available model relations:
  * @property User $user
+ *
+ * The followings are the available behavior methods:
+ * @method saveImage()
+ * @method makeThumb
+ * ()
  */
 class Product extends ActiveRecord
 {
@@ -104,8 +109,8 @@ class Product extends ActiveRecord
 
     protected function afterSave()
     {
-        if ($this->image) {
-            $this->saveImage();
+        if ($this->image && $this->saveImage()) {
+            $this->makeThumb();
         }
 
         return parent::afterSave();
