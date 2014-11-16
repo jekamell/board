@@ -13,7 +13,7 @@ class ProductController extends Controller
                 ],
                 [
                     'allow',
-                    'actions' => ['my', 'add', 'delete'],
+                    'actions' => ['my', 'add', 'update', 'delete'],
                     'users' => ['@'],
                 ],
             ],
@@ -47,6 +47,20 @@ class ProductController extends Controller
         }
     }
 
+    public function actionUpdate($id)
+    {
+        $model = Product::model()->noDeleted()->findByPk($id);
+        if ($attributes = $this->getPost('Product')) {
+            $model->attributes = $attributes;
+            $model->image = CUploadedFile::getInstance($model, 'image');
+            if ($model->save()) {
+                $this->setFlash(WebUser::FLASH_OK, 'aa');
+            }
+        }
+
+        $this->render('form', ['model' => $model]);
+    }
+
     public function actionAdd()
     {
         $model = new Product();
@@ -61,7 +75,7 @@ class ProductController extends Controller
             }
         }
 
-        $this->render('add', ['model' => $model]);
+        $this->render('form', ['model' => $model]);
     }
 
     /**

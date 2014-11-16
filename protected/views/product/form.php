@@ -27,13 +27,16 @@
     <div class="form-group">
         <?= $form->labelEx($model, 'image', ['class' => 'col-sm-2 control-label']); ?>
         <div class="col-sm-10">
+            <? if ($image = $model->getHttpPath(FileBehavior::PREFIX_THUMB)) { ?>
+                <?= CHtml::image($image, $model->title, ['style' => 'max-width: 60px; ']) ?>
+            <? } ?>
             <?= $form->fileField($model, 'image', ['style' => 'margin-top: 5px']); ?>
         </div>
     </div>
 
     <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
-            <?= CHtml::submitButton('Add', ['class' => 'btn btn-default']); ?>
+            <?= CHtml::submitButton($model->getIsNewRecord() ? 'Add' : 'Update', ['class' => 'btn btn-default']); ?>
         </div>
     </div>
 <? $this->endWidget(); ?>

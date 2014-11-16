@@ -32,6 +32,10 @@ class FileBehavior extends CActiveRecordBehavior
 
     public function getHttpPath($filePrefix = '')
     {
+        if (!is_file($this->getAbsolutePath($filePrefix))) {
+            return ''; // TODO: return default picture here
+        }
+
         return str_replace(Yii::getPathOfAlias('webroot'), '', $this->getAbsolutePath($filePrefix));
     }
 

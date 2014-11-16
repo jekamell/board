@@ -102,7 +102,8 @@ class Product extends ActiveRecord
                 'image',
                 'file',
                 'types' => 'jpeg, png',
-                'maxSize' => Yii::app()->params['image']['maxSize'] * 1024 * 1024
+                'maxSize' => Yii::app()->params['image']['maxSize'] * 1024 * 1024,
+                'allowEmpty' => $this->getScenario() == self::SCENARIO_UPDATE
             ],
         ];
     }
@@ -154,7 +155,7 @@ class Product extends ActiveRecord
             'criteria' => $criteria,
             'sort' => $sort,
             'pagination' => [
-                'pageSize' => 2,
+                'pageSize' => 10,
             ],
         ]);
     }

@@ -10,7 +10,11 @@ $this->widget('zii.widgets.grid.CGridView', [
             'type' => 'raw',
             'htmlOptions' => ['style' => 'width:' . Yii::app()->params['image']['thumb']['width']]
         ],
-        'title',
+        [
+            'name' => 'title',
+            'value' => 'CHtml::link($data->title, Yii::app()->controller->createUrl("/product/update", ["id" => $data->id]))',
+            'type' => 'raw',
+        ],
         'price',
         'date_add',
         [
