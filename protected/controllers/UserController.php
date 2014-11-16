@@ -8,7 +8,7 @@ class UserController extends Controller
             [
                 [
                     'allow',
-                    'actions' => ['login', 'register'],
+                    'actions' => ['login', 'register', 'confirm'],
                     'users' => ['?'],
                 ],
                 [
@@ -71,5 +71,16 @@ class UserController extends Controller
         }
 
         $this->render('profile', ['model' => $user]);
+    }
+
+    public function actionConfirm($hash)
+    {
+        $result = false;
+        if ($hash && ($user = User::model()->findByAttributes(['hash_confirm' => $hash]))) {
+            $user->is_confirmed = 1;
+            $result = $user->save(false, ['is_confirmed']);
+        }
+
+        $this->render('confirm', ['result' => $result]);
     }
 }
