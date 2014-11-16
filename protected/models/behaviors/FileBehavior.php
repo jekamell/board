@@ -2,16 +2,23 @@
 
 class FileBehavior extends CActiveRecordBehavior
 {
+    const EXTENSION_JPG = 'jpeg';
+    const EXTENSING_PNG = 'png';
     public $basePath;
 
     public function saveImage()
     {
-        $this->owner->image->saveAs($this->getImgPath());
+        $this->owner->image->saveAs($this->getAbsolutePath());
     }
 
-    protected function getImgPath()
+    protected function getAbsolutePath()
     {
         return $this->basePath .  $this->getSubDir() . '/' . $this->owner->id . '.' . $this->getExtension();
+    }
+
+    public function getHttpPath()
+    {
+        return str_replace(Yii::getPathOfAlias('webroot'), '', $this->getAbsolutePath());
     }
 
     /**
@@ -36,6 +43,16 @@ class FileBehavior extends CActiveRecordBehavior
 
     protected function getExtension()
     {
-        return $this->owner->image->extensionName;
+        // save file case
+        if ($this->owner->image) {
+            return $this->owner->image->extensionName;
+        }
+//        exit($this->basePath . $this->getSubDir() . $this->owner->id . '.' . self::EXTENSION_JPG);
+        // get file case
+        elseif (is_file($this->basePath . $this->getSubDir() . '/' . $this->owner->id . '.' . self::EXTENSION_JPG)) {
+            return self::EXTENSION_JPG;
+        } elseif (is_file($this->basePath . $this->getSubDir() . '/' . $this->owner->id . '.' . self::EXTENSING_PNG)) {
+            return self::EXTENSING_PNG;
+        }
     }
 }
