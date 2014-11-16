@@ -55,7 +55,7 @@ class ProductController extends Controller
             $model->is_deleted = 1;
             $model->save(false);
             if (!$this->getParam('ajax')) {
-                $this->redirect(array('my'));
+                $this->redirect(['my']);
             }
 
         }

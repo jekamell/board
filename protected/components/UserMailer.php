@@ -34,8 +34,8 @@ class UserMailer extends CApplicationComponent
      */
     public function accountConfirm(User $user)
     {
-        $content = $this->renderContent(__FUNCTION__, array('model' => $user));
-        $contentPlain = $this->renderContent(__FUNCTION__, array('model' => $user), true);
+        $content = $this->renderContent(__FUNCTION__, ['model' => $user]);
+        $contentPlain = $this->renderContent(__FUNCTION__, ['model' => $user], true);
 
         $from = $this->getFrom();
         $to = $this->getTo($user);
@@ -54,13 +54,13 @@ class UserMailer extends CApplicationComponent
     protected function initMailer()
     {
         if (!Yii::app()->hasComponent('swiftMailer')) {
-            Yii::app()->setComponent('swiftMailer', array('class' => 'ext.swiftMailer.SwiftMailer'));
+            Yii::app()->setComponent('swiftMailer', ['class' => 'ext.swiftMailer.SwiftMailer']);
         }
     }
 
     /**
-     * @param array $from Format: array(mail@example.com => alias)
-     * @param array $to Format: array(john.dear@example.com => John Dear)
+     * @param array $from Format: [mail@example.com => alias)
+     * @param array $to Format: [john.dear@example.com => John Dear)
      * @param string $content
      * @param string $contentPlain
      * @param string $subject
@@ -76,11 +76,11 @@ class UserMailer extends CApplicationComponent
 
     protected function getFrom()
     {
-        return array(Yii::app()->params['noreplyEmail'] => Yii::app()->name);
+        return [Yii::app()->params['noreplyEmail'] => Yii::app()->name];
     }
 
     protected function getTo(User $user)
     {
-        return array($user->email => $user->name);
+        return [$user->email => $user->name];
     }
 }
