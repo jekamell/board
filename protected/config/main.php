@@ -62,10 +62,18 @@ return array(
         'ih' => array(
             'class' => 'ext.CImageHandler.CImageHandler',
         ),
+        'userMailer' => array(
+            'class'    => 'application.components.UserMailer',
+            'host'     => '',
+            'port'     => 0,
+            'login'    => '',
+            'password' => '',
+        ),
     ),
     'params' => array(
         // this is used in contact page
         'adminEmail' => 'webmaster@example.com',
+        'noreplyEmail' => 'no-reply@example.com',
         'image' => array(
             'maxSize' => 5, // Mb
             'savePath' => '/images/product/',

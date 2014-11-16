@@ -29,7 +29,7 @@ class UserController extends Controller
             $model->attributes = $attributes;
             if ($model->save()) {
                 $this->setFlash(WebUser::FLASH_OK, 'aa');
-                $this->redirect($this->createUrl('/'));
+                $this->redirect(Yii::app()->getBaseUrl(true));
             }
         }
 

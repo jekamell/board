@@ -10,6 +10,7 @@
  * @property string $password
  * @property string $password_repeat
  * @property string $is_confirmed
+ * @property string $hash_confirm
  * @property string $date_add
  * @property string $date_update
  */
@@ -101,9 +102,21 @@ class User extends ActiveRecord
         if ($this->password_repeat) { //user set up password (registration or profile edit)
             $this->password = $this->crypt($this->password);
         }
+        if ($this->getIsNewRecord()) {
+            $this->hash_confirm = md5($this->email . microtime(true));
+        }
 
         return parent::beforeSave();
     }
+
+    protected function afterSave()
+    {
+        if ($this->getIsNewRecord()) {
+            Yii::app()->userMailer->accountConfirm($this);
+        }
+        return parent::afterSave();
+    }
+
 
     protected function crypt($password)
     {
