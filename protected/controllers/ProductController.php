@@ -23,7 +23,7 @@ class ProductController extends Controller
 
     public function actionIndex()
     {
-        $items = Product::model()->noDeleted()->with('user')->findAll();
+        $items = Product::model()->noDeleted()->orderedDateDesc()->with('user')->findAll();
 
         $this->render('index', ['items' => $items]);
     }

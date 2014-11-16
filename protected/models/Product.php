@@ -60,6 +60,9 @@ class Product extends ActiveRecord
             'noDeleted' => [
                 'condition' => 'is_deleted=0',
             ],
+            'orderedDateDesc' => [
+                'order' => 't.`date_add` DESC'
+            ],
         ];
     }
 
