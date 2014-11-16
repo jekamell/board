@@ -8,6 +8,7 @@ return array(
         'application.models.*',
         'application.models.behaviors.*',
         'application.components.*',
+        'application.components.filters.*',
     ),
     'modules' => array(
         'gii' => array(

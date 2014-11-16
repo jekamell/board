@@ -2,6 +2,20 @@
 
 class ProductController extends Controller
 {
+
+    public function filters()
+    {
+        return array_merge(
+            parent::filters(),
+            [
+                [
+                    'application.components.filters.OperationRestrictionFilter + update, delete',
+                    'id' => $this->getParam('id'),
+                ]
+            ]
+        );
+    }
+
     public function accessRules()
     {
         return array_merge(
