@@ -51,6 +51,9 @@ return array(
                 ),
             ),
         ),
+        'ih' => array(
+            'class' => 'ext.CImageHandler.CImageHandler',
+        ),
     ),
     'params' => array(
         // this is used in contact page
