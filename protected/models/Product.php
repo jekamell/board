@@ -49,6 +49,15 @@ class Product extends ActiveRecord
         ];
     }
 
+    public function scopes()
+    {
+        return [
+            'noDeleted' => [
+                'condition' => 'is_deleted=0',
+            ],
+        ];
+    }
+
 
     /**
 	 * @return array validation rules for model attributes.

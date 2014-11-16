@@ -23,7 +23,9 @@ class ProductController extends Controller
 
     public function actionIndex()
     {
-        $this->render('index');
+        $items = Product::model()->noDeleted()->with('user')->findAll();
+
+        $this->render('index', ['items' => $items]);
     }
 
     public function actionMy()
