@@ -12,13 +12,17 @@
  * @property string $date_add
  * @property string $date_update
  *
+ * The followings are the available model scopes:
+ * @method noDeleted()
+ * @method orderedDateDesc()
+ *
  * The followings are the available model relations:
  * @property User $user
  *
  * The followings are the available behavior methods:
  * @method saveImage()
- * @method makeThumb
- * @method getHttpPath($filePrefix)
+ * @method makeThumb()
+ * @method getHttpPath(string $filePrefix)
  */
 class Product extends ActiveRecord
 {
