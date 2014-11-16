@@ -168,6 +168,4 @@ class Product extends ActiveRecord
 
         return parent::afterSave();
     }
-
-
 }

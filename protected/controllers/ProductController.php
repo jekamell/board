@@ -50,10 +50,8 @@ class ProductController extends Controller
     public function actionUpdate($id)
     {
         $model = Product::model()->noDeleted()->findByPk($id);
-        if ($attributes = $this->getPost('Product')) {
-            $model->attributes = $attributes;
-            $model->image = CUploadedFile::getInstance($model, 'image');
-            if ($model->save()) {
+        if ($this->getPost('Product')) {
+            if ($this->save($model)) {
                 $this->setFlash(WebUser::FLASH_OK, 'aa');
             }
         }
@@ -65,10 +63,8 @@ class ProductController extends Controller
     {
         $model = new Product();
 
-        if ($attributes = $this->getPost('Product')) {
-            $model->attributes = $attributes;
-            $model->image = CUploadedFile::getInstance($model, 'image');
-            if ($model->save()) {
+        if ($this->getPost('Product')) {
+            if ($this->save($model)) {
                 $this->setFlash(WebUser::FLASH_OK, 'aa');
 
                 $this->redirect(Yii::app()->getBaseUrl(true));
@@ -90,5 +86,17 @@ class ProductController extends Controller
                 $this->render('error', $error);
             }
         }
+    }
+
+    protected function save(Product $model)
+    {
+        if ($attributes = $this->getPost('Product')) {
+            $model->attributes = $attributes;
+            if ($image = CUploadedFile::getInstance($model, 'image')) {
+                $model->image = $image;
+            }
+        }
+
+        return $model->save();
     }
 }
