@@ -13,14 +13,14 @@
     <div class="form-group">
         <?= $form->labelEx($model, 'title', ['class' => 'col-sm-2 control-label']); ?>
         <div class="col-sm-10">
-            <?= $form->textField($model, 'title', ['class' => 'form-control', 'placeholder' => 'Name']); ?>
+            <?= $form->textField($model, 'title', ['class' => 'form-control', 'placeholder' => 'HP Pavilion 15" ']); ?>
         </div>
     </div>
 
     <div class="form-group">
         <?= $form->labelEx($model, 'price', ['class' => 'col-sm-2 control-label']); ?>
         <div class="col-sm-10">
-            <?= $form->textField($model, 'price', ['class' => 'form-control', 'placeholder' => 'Name']); ?>
+            <?= $form->textField($model, 'price', ['class' => 'form-control', 'placeholder' => '9999.90']); ?>
         </div>
     </div>
 
