@@ -13,7 +13,8 @@ class m141114_205039_add_user_table extends CDbMigration
               `is_confirmed` tinyint(1) default 0,
               `date_add` datetime NOT NULL,
               `date_update` datetime,
-              PRIMARY KEY (`id`)
+              PRIMARY KEY (`id`),
+              UNIQUE (`email`)
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8;"
         );
 
