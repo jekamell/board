@@ -40,7 +40,7 @@ class Controller extends CController
 
     protected function beforeAction($action)
     {
-        if (!Yii::app()->getRequest()->isScriptRegistered('jquery')) {
+        if (!Yii::app()->getClientScript()->isScriptRegistered('jquery')) {
             Yii::app()->getClientScript()->registerCoreScript('jquery');
         }
 
