@@ -8,7 +8,7 @@
 class FileBehavior extends CActiveRecordBehavior
 {
     const EXTENSION_JPG = 'jpeg';
-    const EXTENSING_PNG = 'png';
+    const EXTENSION_PNG = 'png';
     const PREFIX_THUMB = '_thumb';
 
     public $basePath;
@@ -73,8 +73,8 @@ class FileBehavior extends CActiveRecordBehavior
         // get file case
         elseif (is_file($this->basePath . $this->getSubDir() . '/' . $this->owner->id . '.' . self::EXTENSION_JPG)) {
             return self::EXTENSION_JPG;
-        } elseif (is_file($this->basePath . $this->getSubDir() . '/' . $this->owner->id . '.' . self::EXTENSING_PNG)) {
-            return self::EXTENSING_PNG;
+        } elseif (is_file($this->basePath . $this->getSubDir() . '/' . $this->owner->id . '.' . self::EXTENSION_PNG)) {
+            return self::EXTENSION_PNG;
         }
     }
 }
