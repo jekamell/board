@@ -22,16 +22,6 @@ return array(
             'class' => 'WebUser',
             'loginUrl' => array('/user/login'),
         ),
-        'urlManager' => array(
-            'urlFormat' => 'path',
-            'showScriptName' => false,
-            'rules' => array(
-                '' => 'product/index',
-                '<controller:\w+>/<id:\d+>' => '<controller>/view',
-                '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
-                '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
-            ),
-        ),
         'clientScript' => array(
             'scriptMap' => array(
                 'jquery.js' => '/js/jq/jquery.js',
@@ -68,6 +58,21 @@ return array(
             'port'     => 0,
             'login'    => '',
             'password' => '',
+        ),
+        'urlManager' => array(
+            'urlFormat' => 'path',
+            'showScriptName' => false,
+            'rules' => array(
+                '' => 'product/index',
+
+                '<module:\w+>/<controller:\w+>/<action:\w+>/<id:\d+>' => '<module>/<controller>/<action>/<id>',
+                '<module:\w+>/<controller:\w+>/<action:\w+>' => '<module>/<controller>/<action>',
+
+                '<controller:\w+>/<id:\d+>' => '<controller>/view',
+                '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
+                '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
+
+            ),
         ),
     ),
     'params' => array(
