@@ -1,5 +1,3 @@
-board
-=====
 Description:
 =====
 Board is demo application that allow user publish advertisement.<br />
