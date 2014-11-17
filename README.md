@@ -13,7 +13,7 @@ App components:
 Modules:<br />
 <ul>
 <li>Public section</li>
-<li>API</li>
+<li>API (comming)</li>
 </ul>
 
 Technology stack:
