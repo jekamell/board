@@ -57,10 +57,10 @@ class FileBehavior extends CActiveRecordBehavior
         if (is_dir($this->basePath . $sub)) {
             return $sub;
         } elseif (is_writable($this->basePath)) {
-            mkdir($this->basePath . '/' . $sub, 0777, true);
+            mkdir($this->basePath . $sub, 0777, true);
             return $sub;
         } else {
-            throw new CException("Can't create folder: $this->basePath/$sub. Permission denied");
+            throw new CException("Can't create folder: $this->basePath$sub. Permission denied");
         }
     }
 
