@@ -66,7 +66,7 @@ class ProductController extends Controller
         $model = Product::model()->noDeleted()->findByPk($id);
         if ($this->getPost('Product')) {
             if ($this->save($model)) {
-                $this->setFlash(WebUser::FLASH_OK, 'aa');
+                $this->setFlash(WebUser::FLASH_SUCCESS, 'aa');
             }
         }
 
@@ -79,7 +79,7 @@ class ProductController extends Controller
 
         if ($this->getPost('Product')) {
             if ($this->save($model)) {
-                $this->setFlash(WebUser::FLASH_OK, 'aa');
+                $this->setFlash(WebUser::FLASH_SUCCESS, 'aa');
 
                 $this->redirect(Yii::app()->getBaseUrl(true));
             }

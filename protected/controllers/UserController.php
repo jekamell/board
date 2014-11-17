@@ -28,7 +28,7 @@ class UserController extends Controller
         if ($attributes = $this->getPost('User')) {
             $model->attributes = $attributes;
             if ($model->save()) {
-                $this->setFlash(WebUser::FLASH_OK, 'aa');
+                $this->setFlash(WebUser::FLASH_SUCCESS, 'aa');
                 $this->redirect(Yii::app()->getBaseUrl(true));
             }
         }
@@ -43,7 +43,7 @@ class UserController extends Controller
         if ($attributes = $this->getPost('LoginForm')) {
             $model->attributes = $attributes;
             if ($model->validate() && $model->login()) {
-                $this->setFlash(WebUser::FLASH_OK, 'aa');
+                $this->setFlash(WebUser::FLASH_SUCCESS, 'aa');
                 $this->redirect(Yii::app()->getUser()->returnUrl);
             }
         }
@@ -66,7 +66,7 @@ class UserController extends Controller
             if ($user->save()) {
                 Yii::app()->getUser()->setName($user->name);
                 Yii::app()->getUser()->setEmail($user->email);
-                $this->setFlash(WebUser::FLASH_OK, 'aa');
+                $this->setFlash(WebUser::FLASH_SUCCESS, 'aa');
             }
         }
 
