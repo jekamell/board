@@ -7,6 +7,7 @@ App components:
 <li>Authorization</li>
 <li>Email confirmation</li>
 <li>RBAC (role base access control)</li>
+<li>CRUD operations</li>
 </ul>
 Modules:<br />
 <ul>
