@@ -37,10 +37,17 @@ class WebUser extends CWebUser
         $this->setState('email', $email);
     }
 
-
-
     public function getIsGuest()
     {
         return $this->getRole() == User::ROLE_GUEST || parent::getIsGuest();
+    }
+
+    public function assignParams(UserIdentity $identity)
+    {
+        $this->login($identity);
+        $this->setId($identity->getId());
+        $this->setRole($identity->getRole());
+        $this->setName($identity->getName());
+        $this->setEmail($identity->getEmail());
     }
 } 
