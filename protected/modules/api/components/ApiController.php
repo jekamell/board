@@ -2,28 +2,34 @@
 
 class ApiController extends Controller
 {
-    public $layout = '/layouts/column1';
-    public $menu = array();
-    public $sidebarCaption = 'Actions';
-    public $topMenu = array();
-    public $rightMenu = array();
+    /**
+     * @var Response
+     */
+    protected $response;
 
     public function init()
     {
+        $this->response = new Response();
         parent::init();
     }
 
     public function accessRules()
     {
-        return array(
-            'allow',
-        );
+        return [
+            [
+                'deny',
+                'users' => ['*'],
+            ]
+        ];
     }
 
     public function filters()
     {
-        return array(
-            'accessControl',
-        );
+        return ['accessControl'];
+    }
+
+    public function afterAction($action)
+    {
+        $this->response->send();
     }
 }

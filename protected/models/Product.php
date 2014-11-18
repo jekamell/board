@@ -22,11 +22,12 @@
  * The followings are the available behavior methods:
  * @method saveImage()
  * @method makeThumb()
- * @method getHttpPath(string $filePrefix)
+ * @method getHttpPath(string $filePrefix = '')
  */
 class Product extends ActiveRecord
 {
     public $image;
+    protected $apiAttributes = ['id', 'title', 'price', 'date_add'];
 
     /**
      * @return string the associated database table name
@@ -179,6 +180,15 @@ class Product extends ActiveRecord
             'pages'  => $pages,
             'models' => self::model()->findAll($criteria),
         ];
+    }
+
+    public function getApiAttributes()
+    {
+        $result = $this->getAttributes($this->apiAttributes);
+        $result['image'] = ($image = $this->getHttpPath()) ? Yii::app()->getBaseUrl(true) . $image : '';
+        $result['userEmail'] = $this->user->email;
+
+        return $result;
     }
 
     protected function afterSave()
