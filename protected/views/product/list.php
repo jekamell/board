@@ -23,6 +23,7 @@ if ($items) {
     <? $this->widget('CLinkPager', [
         'pages' => $pages,
         'header' => '',
+        'selectedPageCssClass' => 'active',
         'htmlOptions' => [
             'class' => 'pagination',
         ],
