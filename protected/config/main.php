@@ -16,6 +16,8 @@ return array(
             'password' => '12345',
             'ipFilters' => array('127.0.0.1', '::1'),
         ),
+        'api' => array(
+        ),
     ),
     'components' => array(
         'user' => array(
