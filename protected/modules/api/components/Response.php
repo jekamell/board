@@ -9,6 +9,8 @@ class Response extends CComponent
     public static $errors = [];
 
     const NOT_AUTHORIZED = 'You are not authorized to perform this action';
+    const LOGIN_PASSWORD_REQUIRED = 'Login and Password required';
+    const LOGIN_PASSWORD_INVALID = 'Login or Password invalid';
 
     /**
      * Get response data

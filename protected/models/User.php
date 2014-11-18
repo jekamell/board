@@ -11,6 +11,7 @@
  * @property string $password_repeat
  * @property string $is_confirmed
  * @property string $hash_confirm
+ * @property string $token
  * @property string $date_add
  * @property string $date_update
  */

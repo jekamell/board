@@ -4,6 +4,7 @@ return array(
     'basePath' => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..',
     'name' => 'Call-board',
     'language' => 'en',
+    'defaultController' => 'product',
     'preload' => array('log'),
     'import' => array(
         'application.models.*',
@@ -74,16 +75,9 @@ return array(
             'urlFormat' => 'path',
             'showScriptName' => false,
             'rules' => array(
-                '' => 'product/index',
-
-                '<module:\w+>/<controller:\w+>/<id:\d+>' => '<module>/<controller>/view',
-                '<module:\w+>/<controller:\w+>/<action:\w+>/<id:\d+>' => '<module>/<controller>/<action>',
-                '<module:\w+>/<controller:\w+>/<action:\w+>' => '<module>/<controller>/<action>',
-
                 '<controller:\w+>/<id:\d+>' => '<controller>/view',
                 '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
                 '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
-
             ),
         ),
     ),

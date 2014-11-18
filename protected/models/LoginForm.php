@@ -50,11 +50,7 @@ class LoginForm extends CFormModel
             $this->_identity->authenticate();
         }
         if ($this->_identity->errorCode === UserIdentity::ERROR_NONE) {
-            Yii::app()->getUser()->login($this->_identity);
-            Yii::app()->getUser()->id = $this->_identity->id;
-            Yii::app()->getUser()->setRole($this->_identity->role);
-            Yii::app()->getUser()->setName($this->_identity->name);
-            Yii::app()->getUser()->setEmail($this->_identity->email);
+            Yii::app()->getUser()->assignParams($this->_identity);
 
             return true;
         } else {
