@@ -164,6 +164,23 @@ class Product extends ActiveRecord
         ]);
     }
 
+    public function findWithPaging()
+    {
+        $criteria = new CDbCriteria();
+        $criteria->with = ['user'];
+        $criteria->compare('is_deleted', 0);
+
+        $count = Product::model()->count($criteria);
+        $pages = new CPagination($count);
+        $pages->pageSize = 3;
+        $pages->applyLimit($criteria);
+
+        return [
+            'pages'  => $pages,
+            'models' => self::model()->findAll($criteria),
+        ];
+    }
+
     protected function afterSave()
     {
         if ($this->image && $this->saveImage()) {

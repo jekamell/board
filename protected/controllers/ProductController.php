@@ -37,9 +37,9 @@ class ProductController extends Controller
 
     public function actionIndex()
     {
-        $items = Product::model()->noDeleted()->orderedDateDesc()->with('user')->findAll();
+        $paginatedModels = Product::model()->findWithPaging();
 
-        $this->render('list', ['items' => $items]);
+        $this->render('list', ['items' => $paginatedModels['models'], 'pages' => $paginatedModels['pages']]);
     }
 
     public function actionMy()
