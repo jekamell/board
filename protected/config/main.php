@@ -18,6 +18,11 @@ return array(
             'ipFilters' => array('127.0.0.1', '::1'),
         ),
         'api' => array(
+            'import' => array(
+                'application.modules.api.models.*',
+                'application.modules.api.helpers.*',
+                'application.modules.api.components.*',
+            ),
         ),
     ),
     'components' => array(
@@ -71,7 +76,8 @@ return array(
             'rules' => array(
                 '' => 'product/index',
 
-                '<module:\w+>/<controller:\w+>/<action:\w+>/<id:\d+>' => '<module>/<controller>/<action>/<id>',
+                '<module:\w+>/<controller:\w+>/<id:\d+>' => '<module>/<controller>/view',
+                '<module:\w+>/<controller:\w+>/<action:\w+>/<id:\d+>' => '<module>/<controller>/<action>',
                 '<module:\w+>/<controller:\w+>/<action:\w+>' => '<module>/<controller>/<action>',
 
                 '<controller:\w+>/<id:\d+>' => '<controller>/view',

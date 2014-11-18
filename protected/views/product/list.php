@@ -1,8 +1,7 @@
 <?php
 /* @var $this ProductController */
 
-if ($items) {
-    ?>
+if ($items) { ?>
     <? foreach ($items as $model) { ?>
         <div class="well">
             <div class="pull-left" style="width: 200px;">
