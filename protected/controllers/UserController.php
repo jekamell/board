@@ -28,7 +28,7 @@ class UserController extends Controller
         if ($attributes = $this->getPost('User')) {
             $model->attributes = $attributes;
             if ($model->save()) {
-                $this->setFlash(WebUser::FLASH_OK, 'aa');
+                $this->setFlash(WebUser::FLASH_SUCCESS, Yii::t('user', 'registered'));
                 $this->redirect(Yii::app()->getBaseUrl(true));
             }
         }
@@ -43,7 +43,6 @@ class UserController extends Controller
         if ($attributes = $this->getPost('LoginForm')) {
             $model->attributes = $attributes;
             if ($model->validate() && $model->login()) {
-                $this->setFlash(WebUser::FLASH_OK, 'aa');
                 $this->redirect(Yii::app()->getUser()->returnUrl);
             }
         }
@@ -66,7 +65,7 @@ class UserController extends Controller
             if ($user->save()) {
                 Yii::app()->getUser()->setName($user->name);
                 Yii::app()->getUser()->setEmail($user->email);
-                $this->setFlash(WebUser::FLASH_OK, 'aa');
+                $this->setFlash(WebUser::FLASH_SUCCESS, Yii::t('user', 'profile_updated'));
             }
         }
 
@@ -79,6 +78,7 @@ class UserController extends Controller
         if ($hash && ($user = User::model()->findByAttributes(['hash_confirm' => $hash]))) {
             $user->is_confirmed = 1;
             $result = $user->save(false, ['is_confirmed']);
+            $this->setFlash(WebUser::FLASH_SUCCESS, Yii::t('user', 'email_confirmed'));
         }
 
         $this->render('confirm', ['result' => $result]);

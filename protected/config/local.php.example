@@ -12,6 +12,13 @@ return CMap::mergeArray(
                 'enableParamLogging' => true,
                 'enableProfiling' => true,
             ),
+            'userMailer' => array(
+                'host'     => 'smtp.gmail.com',
+                'port'     => 465,
+                'login'    => 'login@gmail.com',
+                'password' => 'password',
+                'isSsl' => true,
+            ),
         ),
     )
 );

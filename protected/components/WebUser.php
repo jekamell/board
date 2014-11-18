@@ -2,8 +2,8 @@
 
 class WebUser extends CWebUser
 {
-    const FLASH_OK = 'ok';
-    const FLASH_ERR = 'err';
+    const FLASH_SUCCESS = 'success';
+    const FLASH_ERROR = 'error';
 
     /**
      * @param $role

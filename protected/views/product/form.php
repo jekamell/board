@@ -27,7 +27,7 @@
     <div class="form-group">
         <?= $form->labelEx($model, 'image', ['class' => 'col-sm-2 control-label']); ?>
         <div class="col-sm-10">
-            <? if ($image = $model->getHttpPath(FileBehavior::PREFIX_THUMB)) { ?>
+            <? if (!$model->getIsNewRecord() && $image = $model->getHttpPath(FileBehavior::PREFIX_THUMB)) { ?>
                 <?= CHtml::image($image, $model->title, ['style' => 'max-width: 60px; ']) ?>
             <? } ?>
             <?= $form->fileField($model, 'image', ['style' => 'margin-top: 5px']); ?>

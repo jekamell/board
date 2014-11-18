@@ -8,7 +8,7 @@
 class FileBehavior extends CActiveRecordBehavior
 {
     const EXTENSION_JPG = 'jpeg';
-    const EXTENSING_PNG = 'png';
+    const EXTENSION_PNG = 'png';
     const PREFIX_THUMB = '_thumb';
 
     public $basePath;
@@ -57,10 +57,10 @@ class FileBehavior extends CActiveRecordBehavior
         if (is_dir($this->basePath . $sub)) {
             return $sub;
         } elseif (is_writable($this->basePath)) {
-            mkdir($this->basePath . '/' . $sub, 0777, true);
+            mkdir($this->basePath . $sub, 0777, true);
             return $sub;
         } else {
-            throw new CException("Can't create folder: $this->basePath/$sub. Permission denied");
+            throw new CException("Can't create folder: $this->basePath$sub. Permission denied");
         }
     }
 
@@ -73,8 +73,8 @@ class FileBehavior extends CActiveRecordBehavior
         // get file case
         elseif (is_file($this->basePath . $this->getSubDir() . '/' . $this->owner->id . '.' . self::EXTENSION_JPG)) {
             return self::EXTENSION_JPG;
-        } elseif (is_file($this->basePath . $this->getSubDir() . '/' . $this->owner->id . '.' . self::EXTENSING_PNG)) {
-            return self::EXTENSING_PNG;
+        } elseif (is_file($this->basePath . $this->getSubDir() . '/' . $this->owner->id . '.' . self::EXTENSION_PNG)) {
+            return self::EXTENSION_PNG;
         }
     }
 }

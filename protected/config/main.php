@@ -3,6 +3,7 @@
 return array(
     'basePath' => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..',
     'name' => 'Call-board',
+    'language' => 'en',
     'preload' => array('log'),
     'import' => array(
         'application.models.*',
@@ -37,6 +38,9 @@ return array(
             'username' => '',
             'password' => '',
             'charset' => 'utf8',
+        ),
+        'messages' => array(
+
         ),
         'errorHandler' => array(
             // use 'site/error' action to display errors
