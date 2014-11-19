@@ -11,6 +11,7 @@ class Response extends CComponent
     const NOT_AUTHORIZED = 'You are not authorized to perform this action';
     const LOGIN_PASSWORD_REQUIRED = 'Login and Password required';
     const LOGIN_PASSWORD_INVALID = 'Login or Password invalid';
+    const NOT_FOUND = 'Item not found';
 
     /**
      * Get response data

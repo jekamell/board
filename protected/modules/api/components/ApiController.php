@@ -11,6 +11,7 @@ class ApiController extends Controller
     public function init()
     {
         $this->response = new Response();
+        $this->module->auth;
         parent::init();
     }
 

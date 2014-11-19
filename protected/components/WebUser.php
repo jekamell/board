@@ -42,7 +42,7 @@ class WebUser extends CWebUser
         return $this->getRole() == User::ROLE_GUEST || parent::getIsGuest();
     }
 
-    public function assignParams(UserIdentity $identity)
+    public function assignParams(CUserIdentity $identity)
     {
         $this->login($identity);
         $this->setId($identity->getId());
