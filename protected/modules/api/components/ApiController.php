@@ -38,6 +38,18 @@ class ApiController extends Controller
         }
     }
 
+    /**
+     * @param CActiveRecord $model
+     */
+    protected function saveModel($model)
+    {
+        if ($model->save()) {
+            $this->response->status = true;
+        } else {
+            $this->response->message = $model->getErrors();
+        }
+    }
+
     public function afterAction($action)
     {
         $this->response->send();

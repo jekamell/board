@@ -12,6 +12,7 @@ class Response extends CComponent
     const LOGIN_PASSWORD_REQUIRED = 'Login and Password required';
     const LOGIN_PASSWORD_INVALID = 'Login or Password invalid';
     const NOT_FOUND = 'Item not found';
+    const ACCOUNT_NOT_CONFIRMED = 'Your account not confirmed. Please confirm and try again';
 
     /**
      * Get response data

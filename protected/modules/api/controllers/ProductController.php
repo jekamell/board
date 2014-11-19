@@ -83,16 +83,4 @@ class ProductController extends ApiController
     {
         return Product::model()->findByAttributes(['id' => $id, 'user_id' => $userId]);
     }
-
-    /**
-     * @param CActiveRecord $model
-     */
-    protected function saveModel($model)
-    {
-        if ($model->save()) {
-            $this->response->status = true;
-        } else {
-            $this->response->message = $model->getErrors();
-        }
-    }
 }

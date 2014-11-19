@@ -14,6 +14,12 @@
  * @property string $token
  * @property string $date_add
  * @property string $date_update
+ *
+ * The followings are the available model scopes:
+ * @method confirmed()
+ *
+ * The followings are the available model relations:
+ * @property Product[] $products
  */
 class User extends ActiveRecord implements ApiAccessible
 {
@@ -68,7 +74,9 @@ class User extends ActiveRecord implements ApiAccessible
      */
     public function relations()
     {
-        return [];
+        return [
+            'products' => [self::HAS_MANY, 'Product', 'user_id'],
+        ];
     }
 
     /**
