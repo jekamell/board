@@ -33,7 +33,11 @@ class ProductController extends ApiController
 
     public function actionView($id)
     {
-        parent::view(Product::model()->noDeleted()->findByPk($id));
+        if ($model = Product::model()->noDeleted()->findByPk($id)) {
+            parent::view(Product::model()->noDeleted()->findByPk($id));
+        } else {
+            throw new CHttpException(404, Response::NOT_FOUND);
+        }
     }
 
     public function actionCreate()
