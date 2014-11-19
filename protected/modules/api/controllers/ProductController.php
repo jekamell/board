@@ -21,7 +21,6 @@ class ProductController extends ApiController
         );
     }
 
-
     public function actionList()
     {
         $this->response->status = true;
@@ -63,7 +62,6 @@ class ProductController extends ApiController
         }
 
     }
-
 
     public function actionDelete($id)
     {
