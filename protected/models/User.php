@@ -15,12 +15,14 @@
  * @property string $date_add
  * @property string $date_update
  */
-class User extends ActiveRecord
+class User extends ActiveRecord implements ApiAccessible
 {
     const ROLE_GUEST = 0;
     const ROLE_USER = 1;
 
     public $password_repeat;
+
+    protected $apiAttributes = ['id', 'name', 'email', 'date_add'];
 
     private $salt = '1J!0Gb$Ifu@_OLMa';
 
@@ -122,5 +124,10 @@ class User extends ActiveRecord
     protected function crypt($password)
     {
         return crypt($password, $this->salt);
+    }
+
+    public function getApiAttributes()
+    {
+        return $this->getAttributes($this->apiAttributes);
     }
 }

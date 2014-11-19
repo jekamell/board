@@ -2,8 +2,6 @@
 
 class ProductController extends ApiController
 {
-    public $defaultAction = 'list';
-
     public function accessRules()
     {
         return array_merge(
@@ -31,10 +29,7 @@ class ProductController extends ApiController
 
     public function actionView($id)
     {
-        if ($model = Product::model()->noDeleted()->findByPk($id)) {
-            $this->response->status = true;
-            $this->response->result = $model->getApiAttributes();
-        }
+        parent::view(Product::model()->noDeleted()->findByPk($id));
     }
 
     public function actionCreate()

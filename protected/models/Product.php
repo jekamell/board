@@ -24,7 +24,7 @@
  * @method makeThumb()
  * @method getHttpPath(string $filePrefix = '')
  */
-class Product extends ActiveRecord
+class Product extends ActiveRecord implements ApiAccessible
 {
     public $image;
     protected $apiAttributes = ['id', 'title', 'price', 'date_add'];

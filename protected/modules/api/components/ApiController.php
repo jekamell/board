@@ -2,6 +2,7 @@
 
 class ApiController extends Controller
 {
+    public $defaultAction = 'list';
     /**
      * @var Response
      */
@@ -26,6 +27,14 @@ class ApiController extends Controller
     public function filters()
     {
         return ['accessControl'];
+    }
+
+    public function view(ApiAccessible $model)
+    {
+        if ($model) {
+            $this->response->status = true;
+            $this->response->result = $model->getApiAttributes();
+        }
     }
 
     public function afterAction($action)

@@ -8,11 +8,16 @@ class UserController extends ApiController
             [
                 [
                     'allow',
-                    'actions' => ['login'],
+                    'actions' => ['login', 'view'],
                     'users' => ['*'],
                 ]
             ],
             parent::accessRules()
         );
+    }
+
+    public function actionView($id)
+    {
+        parent::view(User::model()->findByPk($id));
     }
 }
