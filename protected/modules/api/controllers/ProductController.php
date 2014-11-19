@@ -38,7 +38,17 @@ class ProductController extends ApiController
 
     public function actionCreate()
     {
-        echo __METHOD__;
+        $model = new Product();
+        $model->attributes = [
+            'title' => $this->getParam('title'),
+            'price' => $this->getParam('price'),
+        ];
+
+        if (isset($_FILES['image'])) {
+            $model->image = CUploadedFile::getInstanceByName('image');
+        }
+
+        $this->saveModel($model);
     }
 
     public function actionUpdate($id)
@@ -52,11 +62,7 @@ class ProductController extends ApiController
                 $model->image = CUploadedFile::getInstanceByName('image');
             }
 
-            if ($model->save()) {
-                $this->response->status = true;
-            } else {
-                $this->response->message = $model->getErrors();
-            }
+            $this->saveModel($model);
         } else {
             throw new CHttpException(404, Response::NOT_FOUND);
         }
@@ -67,11 +73,7 @@ class ProductController extends ApiController
     {
         if ($model = $this->loadModelByIdAndUserId($id, Yii::app()->getUser()->getId())) {
             $model->is_deleted = 1;
-            if ($model->save()) {
-                $this->response->status = true;
-            } else {
-                $this->response->message = $model->getErrors();
-            }
+            $this->saveModel($model);
         } else {
             throw new CHttpException(404, Response::NOT_FOUND);
         }
@@ -79,6 +81,18 @@ class ProductController extends ApiController
 
     protected function loadModelByIdAndUserId($id, $userId)
     {
-        return Product::model()->findByAttributes(['id' => $id, 'user_id' => Yii::app()->getUser()->getId()]);
+        return Product::model()->findByAttributes(['id' => $id, 'user_id' => $userId]);
+    }
+
+    /**
+     * @param CActiveRecord $model
+     */
+    protected function saveModel($model)
+    {
+        if ($model->save()) {
+            $this->response->status = true;
+        } else {
+            $this->response->message = $model->getErrors();
+        }
     }
 }
