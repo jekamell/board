@@ -76,8 +76,10 @@ return array(
             'showScriptName' => false,
             'rules' => array(
 
-                'api/<action:(login)>' => 'api/default/<action>',
-
+                '<module:\w+>/<action:(login)>' => 'api/default/<action>',
+                '<module:\w+>/<controller:\w+>/<id:\d+>' => 'api/<controller>/view',
+                '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
+                '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
 
                 '<controller:\w+>/<id:\d+>' => '<controller>/view',
                 '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
