@@ -80,6 +80,7 @@ return array(
             'urlFormat' => 'path',
             'showScriptName' => false,
             'rules' => array(
+                'login' => 'user/login',
 
                 '<module:\w+>/<action:(login)>' => '<module>/default/<action>',
                 '<module:\w+>/<controller:\w+>/<id:\d+>' => '<module>/<controller>/view',
